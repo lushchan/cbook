@@ -2,14 +2,13 @@
 ### Max requests per IP
 ```cat /var/log/nginx/access.log|cut -f 1 -d ' '|sort|uniq -c|sort -nr|less ```
 
-### MySQL
-#ADD GRANTS
+# MySQL
+### ADD GRANTS
 ```GRANT ALL PRIVILEGES ON database.* TO user@`localhost` IDENTIFIED BY 'password';```
-#MAKE DUMP dbname to dbname.sql
+### MAKE DUMP dbname to dbname.sql
 ```mysqldump --routines --events --lock-tables dbname > dbname.sql```
 
 # SNIPETS
-
 ## nginx limits per ip
 ```nginx http {
 ...
