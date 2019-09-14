@@ -1,39 +1,46 @@
-Logs
-#Max requests per IP
+### Logs
+# Max requests per IP
 cat /var/log/nginx/access.log|cut -f 1 -d ' '|sort|uniq -c|sort -nr|less 
 
-###MySQL###
+### MySQL
 #ADD GRANTS
 GRANT ALL PRIVILEGES ON database.* TO user@`localhost` IDENTIFIED BY 'password';
 #MAKE DUMP dbname to dbname.sql
 mysqldump --routines --events --lock-tables dbname > dbname.sql
 
-###SNIPETS
+### SNIPETS
 
 #nginx limits per ip
 http {
-geo $ip_allow {
-192.168.1.1 1;
-192.168.1.2 1;
-default 0;
+...
+geo $limit {
+ default 1;
+192.168.1.1 0;
+192.168.1.2 0;
+192.168.1.3 0;
 }
 }
 
-#vhost.conf
 map $limit $limit_ips {
  0 '';
  1 $binary_remote_addr;
 }
 
+server {
+...
 limit_req_zone $limit_ips zone=peraddr:10m rate=100r/m;
+...
+}
 
-###Limit to uri from ip###
+### Limit to uri from ip###
 http {
+..
 geo $ip_allow {
 192.168.1.1 1;
 192.168.1.2 1;
 default 0;
 }
+...
 }
 
 server {
@@ -53,7 +60,8 @@ server {
       }
 ...
 }
-###nc
-#push file fix.sh to host 192.168.1.199 port 60000
+
+### nc
+# push file fix.sh to host 192.168.1.199 port 60000
 cat acme.sh | nc -l 60000 < fix.sh #source
 nc 192.168.1.199 60000 | cat > fix.sh #target
