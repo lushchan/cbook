@@ -61,7 +61,9 @@ server {
 ...
 }
 ```
-# nc
+
+### crontab for all users
+```for user in $(cut -d':' -f1 /etc/passwd); do crontab -u $user -l; done```
 ### push file fix.sh to host 192.168.1.199 port 60000
 `cat acme.sh | nc -l 60000 < fix.sh #source`
 `nc 192.168.1.199 60000 | cat > fix.sh #target`
