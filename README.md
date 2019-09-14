@@ -1,6 +1,6 @@
 # Logs
 ### Max requests per IP
-```cat /var/log/nginx/access.log|cut -f 1 -d ' '|sort|uniq -c|sort -nr|less ```
+```bash cat /var/log/nginx/access.log|cut -f 1 -d ' '|sort|uniq -c|sort -nr|less ```
 
 ### MySQL
 #ADD GRANTS
@@ -11,7 +11,7 @@
 # SNIPETS
 
 ## nginx limits per ip
-```code http {
+```nginx http {
 ...
 geo $limit {
  default 1;
