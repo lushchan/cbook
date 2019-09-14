@@ -1,6 +1,6 @@
 # Logs
 ### Max requests per IP
-```shell cat /var/log/nginx/access.log|cut -f 1 -d ' '|sort|uniq -c|sort -nr|less ```
+```cat /var/log/nginx/access.log|cut -f 1 -d ' '|sort|uniq -c|sort -nr|less ```
 
 ### MySQL
 #ADD GRANTS
