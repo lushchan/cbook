@@ -2,7 +2,7 @@ Logs
 #Max requests per IP
 cat /var/log/nginx/access.log|cut -f 1 -d ' '|sort|uniq -c|sort -nr|less 
 
-###MySQL
+###MySQL###
 #ADD GRANTS
 GRANT ALL PRIVILEGES ON database.* TO user@`localhost` IDENTIFIED BY 'password';
 #MAKE DUMP dbname to dbname.sql
