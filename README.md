@@ -11,7 +11,7 @@
 # SNIPETS
 
 ## nginx limits per ip
-```http {
+```code http {
 ...
 geo $limit {
  default 1;
