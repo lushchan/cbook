@@ -9,18 +9,17 @@ GRANT ALL PRIVILEGES ON database.* TO user@`localhost` IDENTIFIED BY 'password';
 mysqldump --routines --events --lock-tables dbname > dbname.sql
 
 ###SNIPETS
-#nginx limits
+
+#nginx limits per ip
 http {
-geo $limit {
- default 1;
-8.8.8.8 0;
-1.1.1.1 0;
-78.140.128.228 0;
+geo $ip_allow {
+192.168.1.1 1;
+192.168.1.2 1;
+default 0;
 }
 }
 
-vhost.conf
-
+#vhost.conf
 map $limit $limit_ips {
  0 '';
  1 $binary_remote_addr;
@@ -28,6 +27,32 @@ map $limit $limit_ips {
 
 limit_req_zone $limit_ips zone=peraddr:10m rate=100r/m;
 
+###Limit to uri from ip###
+http {
+geo $ip_allow {
+192.168.1.1 1;
+192.168.1.2 1;
+default 0;
+}
+}
+
+server {
+...
+   set $check '';
+  
+   if ( $ip_allow = 0  ) {
+      set $check "A";
+   }
+
+    if ( $request_uri ~* ((asm_admin\.php.*|wp-login\.php.*|xmlrpc\.php.*|admin\/login\/.*|wp-json.*)$)) {
+      set $check "${check}B";
+   }
+
+   if ( $check = "AB" ) {
+      return 403;
+      }
+...
+}
 ###nc
 #push file fix.sh to host 192.168.1.199 port 60000
 cat acme.sh | nc -l 60000 < fix.sh #source
