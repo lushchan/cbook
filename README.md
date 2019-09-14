@@ -34,7 +34,7 @@ limit_req_zone $limit_ips zone=peraddr:10m rate=100r/m;
 ```
 ## Limit to uri from ip
 
-```http {
+```nginx http {
 ..
 geo $ip_allow {
 192.168.1.1 1;
