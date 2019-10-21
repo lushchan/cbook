@@ -73,5 +73,5 @@ __useful tricks__
 
 ```mysqldump --master-data=2 --flush-logs --quick --single-transaction --routines database | gzip -c | nc -l 60000 < database.sql```
 
-```nc 192.168.1.199 60000 | gunzip | mysql tubestorage < database.sql```
+```nc 192.168.1.199 60000 | gunzip | mysql database < database.sql```
 
