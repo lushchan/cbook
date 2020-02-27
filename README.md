@@ -10,8 +10,9 @@
 
 ### setfacl usage
 
-```find ./ -type d -exec setfacl -m u:apache:rwx {} \;
-find ./ -type f -exec setfacl -m u:apache:rw {} \;```
+```find ./ -type d -exec setfacl -m u:apache:rwx {} \;```
+
+```find ./ -type f -exec setfacl -m u:apache:rw {} \;```
 
 # SNIPETS
 ## nginx limits per ip
