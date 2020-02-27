@@ -8,6 +8,11 @@
 ### MAKE DUMP dbname to dbname.sql
 ```mysqldump --routines --events --lock-tables dbname > dbname.sql```
 
+###setfacl usage
+
+find ./ -type d -exec setfacl -m u:apache:rwx {} \;
+find ./ -type f -exec setfacl -m u:apache:rw {} \;
+
 # SNIPETS
 ## nginx limits per ip
 ```nginx http {
