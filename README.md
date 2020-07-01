@@ -7,6 +7,7 @@
 ```GRANT ALL PRIVILEGES ON database.* TO user@`localhost` IDENTIFIED BY 'password';```
 ### MAKE DUMP dbname to dbname.sql
 ```mysqldump --routines --events --lock-tables dbname > dbname.sql```
+```mysqldump --routines --events --single-transaction dbname > dbname.sql```
 
 ### setfacl usage
 
