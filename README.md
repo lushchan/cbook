@@ -85,11 +85,11 @@ __useful tricks__
 ###httpd prefork###
 ```
 <IfModule prefork.c>
-ServerLimit (Full RAM in MB - Othe services RAM like MySQL) / ps aux | grep 'httpd' | awk '{print $6/1024;}'
+ServerLimit (Full RAM in MB - RAM consumption by other services like MySQL) / RAM consumption by 1 httpd process $(ps aux | grep 'httpd' | awk '{print $6/1024;}')
 StartServers 30% of MaxClients
 MinSpareServers 5% MaxClients
 MaxSpareServers 10% MaxClients
-MaxClients (Full RAM in MB - Othe services RAM like MySQL) / ps aux | grep 'httpd' | awk '{print $6/1024;}'
+MaxClients (Full RAM in MB - RAM consumption by other services like MySQL) / RAM consumption by 1 httpd process $(ps aux | grep 'httpd' | awk '{print $6/1024;}')
 MaxRequestsPerChild 10000
 </IfModule>
 ```
