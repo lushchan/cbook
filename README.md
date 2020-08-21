@@ -68,6 +68,17 @@ server {
 ...
 }
 ```
+## httpd prefork 
+```
+<IfModule prefork.c>
+ServerLimit (Full RAM in MB - RAM consumption by other services like MySQL) / RAM consumption by 1 httpd process $(ps aux | grep 'httpd' | awk '{print $6/1024;}')
+StartServers 30% of MaxClients
+MinSpareServers 5% MaxClients
+MaxSpareServers 10% MaxClients
+MaxClients (Full RAM in MB - RAM consumption by other services like MySQL) / RAM consumption by 1 httpd process $(ps aux | grep 'httpd' | awk '{print $6/1024;}')
+MaxRequestsPerChild 10000
+</IfModule>
+```
 
 ### crontab for all users
 ```for user in $(cut -d':' -f1 /etc/passwd); do crontab -u $user -l; done```
@@ -81,15 +92,3 @@ __useful tricks__
 ```mysqldump --master-data=2 --flush-logs --quick --single-transaction --routines database | gzip -c | nc -l 60000 < database.sql```
 
 ```nc 192.168.1.199 60000 | gunzip | mysql database < database.sql```
-
-###httpd prefork###
-```
-<IfModule prefork.c>
-ServerLimit (Full RAM in MB - RAM consumption by other services like MySQL) / RAM consumption by 1 httpd process $(ps aux | grep 'httpd' | awk '{print $6/1024;}')
-StartServers 30% of MaxClients
-MinSpareServers 5% MaxClients
-MaxSpareServers 10% MaxClients
-MaxClients (Full RAM in MB - RAM consumption by other services like MySQL) / RAM consumption by 1 httpd process $(ps aux | grep 'httpd' | awk '{print $6/1024;}')
-MaxRequestsPerChild 10000
-</IfModule>
-```
