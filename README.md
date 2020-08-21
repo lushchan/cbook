@@ -83,7 +83,7 @@ __useful tricks__
 ```nc 192.168.1.199 60000 | gunzip | mysql database < database.sql```
 
 ###httpd prefork###
-
+```
 <IfModule prefork.c>
 ServerLimit (Full RAM in MB - Othe services RAM like MySQL) / ps aux | grep 'httpd' | awk '{print $6/1024;}'
 StartServers 30% of MaxClients
@@ -92,4 +92,4 @@ MaxSpareServers 10% MaxClients
 MaxClients (Full RAM in MB - Othe services RAM like MySQL) / ps aux | grep 'httpd' | awk '{print $6/1024;}'
 MaxRequestsPerChild 10000
 </IfModule>
-
+```
