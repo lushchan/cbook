@@ -16,6 +16,20 @@
 ```find ./ -type f -exec setfacl -m u:apache:rw {} \;```
 
 # SNIPETS
+
+## nginx acme location(avoid anoying redirects)
+```
+location /.well-known/acme-challenge/ {
+        root /home/user/domain.com/www;
+        
+
+default_type "text/plain";
+        try_files $uri =404;
+                break;
+
+    }
+```
+
 ## nginx limits per ip
 ```nginx http {
 ...
@@ -86,6 +100,7 @@ MaxRequestsPerChild 10000
 ```cat file.sh | nc -l 60000 < file.sh ``` #on source
 
 ```nc 192.168.1.199 60000 | cat > file.sh ``` #on target
+
 
 __useful tricks__
 
