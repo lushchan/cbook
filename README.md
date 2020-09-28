@@ -19,9 +19,9 @@
 
 ## check private and pub keys
 ```
-openssl x509 -noout -modulus -in ../private.crt | openssl md5 #private
+openssl x509 -noout -modulus -in ../pub.crt | openssl md5 #pub
 
-openssl rsa -noout -modulus -in ../pub.key | openssl md5 #pub
+openssl rsa -noout -modulus -in ../private.key | openssl md5 #private
 ```
 
 ## nginx acme location(avoid anoying redirects)
