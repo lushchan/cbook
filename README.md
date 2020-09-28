@@ -17,6 +17,13 @@
 
 # SNIPETS
 
+## check private and pub keys
+```
+openssl x509 -noout -modulus -in ../private.crt | openssl md5 #private
+
+openssl rsa -noout -modulus -in ../pub.key | openssl md5 #pub
+```
+
 ## nginx acme location(avoid anoying redirects)
 ```
 location /.well-known/acme-challenge/ {
