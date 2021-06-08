@@ -1,3 +1,7 @@
+#Git
+###Push with specific key
+```ssh-agent bash -c 'ssh-add /home/support/lmr/.ssh/id_rsa; git push origin master'```
+
 # Logs
 ### Max requests per IP
 ```cat /var/log/nginx/access.log|cut -f 1 -d ' '|sort|uniq -c|sort -nr|less ```
