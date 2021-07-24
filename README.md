@@ -13,6 +13,10 @@
 ```mysqldump --routines --events --lock-tables dbname > dbname.sql```
 ```mysqldump --routines --events --single-transaction dbname > dbname.sql```
 
+# Files
+### find and unlink
+```find . -type l -exec unlink {} \;```
+
 ### setfacl usage
 
 ```find ./ -type d -exec setfacl -m u:apache:rwx {} \;```
