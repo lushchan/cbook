@@ -108,6 +108,20 @@ MaxClients (Full RAM in MB - RAM consumption by other services like MySQL) / RAM
 MaxRequestsPerChild 10000
 </IfModule>
 ```
+## pm.max.children php-fpm
+```
+Далее, возьмем за основу формулу для расчета pm.max_children (источник), и проведем расчет на примере:
+
+Total Max Processes = (Total Ram - (Used Ram + Buffer)) / (Memory per php process)
+
+Всего ОЗУ: 4Гб
+Используется ОЗУ: 1000Мб
+Буфер безопасности: 400Мб
+Память на один дочерний php-fpm процесс (в среднем): 30Мб
+
+Максимально возможное кол-во процессов = (4096 - (1000 + 400)) / 30 = 89
+Четное количество: 89 округлили в меньшую сторону до 80
+```
 
 ### crontab for all users
 ```for user in $(cut -d':' -f1 /etc/passwd); do crontab -u $user -l; done```
